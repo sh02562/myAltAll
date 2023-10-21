@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DynamicRowAddComponent } from './components/dynamic-row-add/dynamic-row-add.component';
 import { DynamicScrollComponent } from './components/dynamic-scroll/dynamic-scroll.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,9 @@ import { DynamicScrollComponent } from './components/dynamic-scroll/dynamic-scro
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

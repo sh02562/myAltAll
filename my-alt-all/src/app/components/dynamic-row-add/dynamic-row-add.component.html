@@ -1,1 +1,61 @@
-<p>dynamic-row-add works!</p>
+<form [formGroup]="myForm">
+  <div formArrayName="tableRows">
+    <label [for]="'input' + i"> Thing {{ i }}:</label>
+    <input
+      type="text"
+      [formControlName]="i"
+      [name]="'input' + i"
+      (keyup.enter)="onEnter()"
+    />
+    <div class="tbale-wrapper">
+      <table>
+        <div *ngFor="let tableRow of tableRowsFun().controls; let i = index">
+          <tr [formGroupName]="i">
+            <td>
+              <label [for]="'input' + i"></label>
+              <input
+                #yyy
+                type="text"
+                (click)="removeThing(i)"
+                formControlName="things"
+                [name]="'input' + i"
+                [id]="'input' + i"
+                (focus)="onFocus($event, i)"
+                [ngClass]="{ formSetColor: i === checkIndex }"
+                (keydown)="onKeydownMain($event, i)"
+                (keypress)="alphaNumberOnly($event)"
+              />
+            </td>
+            <button type="button" (click)="defaultText(i)"></button>
+            <td>
+              <label [for]="'input' + i"></label>
+              <input
+                #yyy2
+                type="text"
+                (focus)="onFocus($event, i)"
+                (click)="removeThing(i)"
+                formControlName="things"
+                [name]="'input' + i"
+                [id]="'input' + i"
+                (focus)="onFocus($event, i)"
+                [ngClass]="{ formSetColor: i === checkIndex }"
+                (keydown)="onKeydownMain($event, i)"
+              />
+            </td>
+          </tr>
+        </div>
+      </table>
+    </div>
+    <div>
+      <p *ngFor="let data of myForm.value">FormGroup:{{ data.value | json }}</p>
+      <ul>
+        <li
+          *ngFor="let items of tableRowsFun().controls; let i = index"
+          [formGroupName]="i"
+        >
+          <p>Chosen value : {{ items.value | json }}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</form>
